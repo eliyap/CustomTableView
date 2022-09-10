@@ -64,37 +64,9 @@ struct ContentView: View, TableViewDelegate {
                 .frame(width: 0, height: 0)
                 .disabled(true)
                 .hidden()
-                
-                VStack {
-                    TextField("Anything", text: Binding(get: {
-                        return self.inputField
-                    }, set: { (newValue) in
-                        self.inputField = newValue
-                        self.mutableData.append(newValue)
-                    }))
-                    
-                    Divider()
-                    
-                    TableView(dataSource: self.mutableData as TableViewDataSource, delegate: self )
-                }
-                .padding()
-                .edgesIgnoringSafeArea(.bottom)
-                
-                GeometryReader { proxy in
-                    VStack {
-                        Spacer()
-                        Button("Select") {
-                            // does nothing
-                        }
-                        .padding()
-                        .frame(width: proxy.size.width - 32)
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .shadow(radius: 14.0)
-                        .opacity(self.isScrolling ? 0 : 1.0)
-                    }
-                }
+                TableView(dataSource: self.mutableData as TableViewDataSource, delegate: self )
             }.navigationBarTitle("UITableView")
+                .edgesIgnoringSafeArea(.top)
         }
     }
     
